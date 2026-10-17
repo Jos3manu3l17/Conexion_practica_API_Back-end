@@ -1,4 +1,7 @@
-// Este archivo define el controlador REST para manejar las solicitudes relacionadas con los usuarios. Se utiliza la anotación @RestController para indicar que esta clase es un controlador REST y @RequestMapping para definir la ruta base "/usuarios". Además, se permite el acceso desde el origen "http://
+// Este archivo define el controlador REST para manejar las solicitudes relacionadas 
+// con los usuarios. Se utiliza la anotación @RestController para indicar que esta 
+// clase es un controlador REST y @RequestMapping para definir la ruta base 
+// "/usuarios". Además, se permite el acceso desde el origen "http://
 
 package com.ejemplo.conexiondb.controller;
 
@@ -8,6 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -25,5 +30,10 @@ public class UsuarioController {
     @GetMapping
     public List<Usuario> obtenerUsuarios() {
         return usuarioRepository.findAll();
+    }
+
+    @PostMapping
+        public Usuario registrarUsuario(@RequestBody Usuario usuario) {
+            return usuarioRepository.save(usuario);
     }
 }
